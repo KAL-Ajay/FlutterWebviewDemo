@@ -1,0 +1,1 @@
+function displaySomething(n){try{window.angularComponentRef.zone.run(function(){window.angularComponentRef.displaySomething(n)})}catch(o){}}function showSomethingOnFlutter(n){PRINT.postMessage(n)}
