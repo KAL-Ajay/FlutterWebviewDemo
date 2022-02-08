@@ -13,15 +13,13 @@ class HomePage extends StatelessWidget {
           child: Text("Open Webpage"),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => MyWebView(
-                title: "DWB_DEMO",
-                selectedUrl: "https://2c13-115-96-193-0.ngrok.io",
-              )
-            ));
+                builder: (BuildContext context) => MyWebView(
+                      title: "DWB_DEMO",
+                      selectedUrl: "<ANGULAR_SITE_LINK>",
+                    )));
           },
         ),
       ),
     );
   }
-  
 }

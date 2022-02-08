@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +35,8 @@ class _MyWebViewState extends State<MyWebView> {
           text += "Android ID: ${androidDeviceInfo.androidId}\\n";
           // text = androidDeviceInfo.product!.toString();
           print(text);
+
+          // Calling angular javascript from Flutter
           _webViewController.runJavascript("displaySomething(' $text ');");
           print("Send device information to javascript");
         },
@@ -62,7 +63,7 @@ class _MyWebViewState extends State<MyWebView> {
             height: MediaQuery.of(context).size.height * 0.6,
             child: WebView(
               debuggingEnabled: true,
-              initialUrl: "https://4600-117-230-140-189.ngrok.io/",
+              initialUrl: widget.selectedUrl,
               javascriptMode: JavascriptMode.unrestricted,
               javascriptChannels: <JavascriptChannel>{_javascriptChannel()},
               onWebViewCreated: (WebViewController webViewController) async {
@@ -82,7 +83,8 @@ class _MyWebViewState extends State<MyWebView> {
 
   JavascriptChannel _javascriptChannel() {
     return JavascriptChannel(
-        name: 'PRINT',
+        name:
+            'PRINT', // Part which is referred to by Angular to send messages to Flutter
         onMessageReceived: (JavascriptMessage message) {
           setState(() {
             widget.message = message.message;
